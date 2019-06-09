@@ -1,24 +1,15 @@
-# README
+gem 'bcrypt', '~> 3.1.7'
+gem 'jwt'
+gem 'rack-cors', require: 'rack/cors'
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+rails g model user username:string email:string password_digest:string
 
-* Ruby version
 
-* System dependencies
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins '*'
+        resource '*', headers: :any, methods: [:get, :post, :options]
+      end
+    end
